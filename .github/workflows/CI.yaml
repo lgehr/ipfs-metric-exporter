@@ -47,6 +47,12 @@ jobs:
       run: go build -v -buildmode=plugin -o mexport.so
     - name: Build Docker Image
       run: ./build-in-docker.sh
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with: 
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        title: "Dev Build"
+        automatic_release_tag: "latest"
+        files: out/*
 
   unit:
     name: Unit Tests
